@@ -3,32 +3,552 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Idea for a Podcast</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <title>Idea for a Podcast - Every Episode is a New Podcast Idea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; padding: 0; min-height: 100vh; font-family: 'Montserrat', Arial, sans-serif; background: #f6f6fa; color: #222; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    .container { text-align: center; padding: 2rem; }
-    h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 1px; }
-    p { font-size: 1.2rem; color: #666; margin-bottom: 2rem; }
-    .contact-btn { display: inline-block; padding: 0.75rem 2rem; font-size: 1rem; border: none; border-radius: 25px; background: #222; color: #fff; cursor: pointer; transition: background 0.2s; margin-bottom: 2rem; text-decoration: none; }
-    .contact-btn:hover { background: #444; }
-    .socials { display: flex; justify-content: center; gap: 1.2rem; margin-top: 1rem; }
-    .social-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #eee; color: #222; text-decoration: none; font-size: 1.3rem; transition: background 0.2s, color 0.2s; }
-    .social-btn:hover { background: #222; color: #fff; }
-    @media (max-width: 600px) { h1 { font-size: 2rem; } .container { padding: 1rem; } }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ffffff, #f0f0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .concept-explanation {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .concept-explanation h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .concept-explanation p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1rem;
+    }
+
+    .episodes {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #ffffff;
+    }
+
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .episode-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .episode-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .episode-header {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .episode-number {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .episode-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .episode-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+    }
+
+    .episode-content {
+      padding: 1.5rem;
+    }
+
+    .episode-description {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .meta-commentary {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      margin-top: 1rem;
+    }
+
+    .meta-commentary h4 {
+      font-size: 0.9rem;
+      color: #667eea;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta-commentary p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-style: italic;
+    }
+
+    .episode-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .listen-btn {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .listen-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .categories {
+      padding: 4rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      margin: 2rem 0;
+      border-radius: 12px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .category-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .category-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .category-desc {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .newsletter {
+      padding: 4rem 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .newsletter p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      padding: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 1rem;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: #ffffff;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: #667eea;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .newsletter-input {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
   </style>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎙️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23667eea'/><circle cx='50' cy='50' r='35' fill='%23ffffff'/><circle cx='50' cy='50' r='25' fill='%23667eea'/><circle cx='50' cy='50' r='15' fill='%23ffffff'/><circle cx='50' cy='50' r='5' fill='%23667eea'/></svg>">
 </head>
 <body>
   <div class="container">
-    <h1>Idea for a Podcast</h1>
-    <p>Every story starts with an idea.</p>
-    <a href="#" class="contact-btn">Contact</a>
-    <div class="socials">
-      <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">I</a>
-      <a href="#" class="social-btn" title="Facebook" aria-label="Facebook">F</a>
-      <a href="#" class="social-btn" title="Twitter" aria-label="Twitter">T</a>
+    <header>
+      <h1 class="logo">Idea for a Podcast</h1>
+      <p class="tagline">Every episode is a new podcast idea, executed with meta commentary</p>
+    </header>
+
+    <div class="concept-explanation">
+      <h2>🎙️ The Concept</h2>
+      <p>Each episode of "Idea for a Podcast" starts with a completely new podcast concept. We then attempt to execute that podcast style while providing behind-the-scenes commentary about the creative process, the challenges of different formats, and the meta-narrative of podcasting itself.</p>
+      <p>From true crime parodies to cooking shows gone wrong, from meditation podcasts that can't stay focused to conspiracy theory podcasts that accidentally debunk themselves - every episode is both a new podcast AND a commentary on podcasting culture.</p>
     </div>
+
+    <section class="episodes">
+      <h2 class="section-title">Latest Episodes</h2>
+      <div class="episodes-grid">
+        <article class="episode-card">
+          <div class="episode-header">
+            <div class="episode-number">Episode 001</div>
+            <h3 class="episode-title">"Murder Mystery Mondays"</h3>
+            <p class="episode-subtitle">A true crime podcast that solves fictional crimes</p>
+          </div>
+          <div class="episode-content">
+            <p class="episode-description">We attempt to create a true crime podcast about a fictional murder mystery, complete with dramatic reenactments, suspect interviews, and a detective who's clearly making it up as he goes along.</p>
+            <div class="meta-commentary">
+              <h4>Meta Commentary</h4>
+              <p>"The challenge was maintaining the serious true crime tone while our detective kept forgetting the victim's name and accidentally solving crimes from other episodes."</p>
+            </div>
+            <div class="episode-meta">
+              <span>45 min</span>
+              <a href="#" class="listen-btn">Listen Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="episode-card">
+          <div class="episode-header">
+            <div class="episode-number">Episode 002</div>
+            <h3 class="episode-title">"Cooking with Chaos"</h3>
+            <p class="episode-subtitle">A cooking podcast that can't follow its own recipes</p>
+          </div>
+          <div class="episode-content">
+            <p class="episode-description">We try to host a cooking show while constantly forgetting ingredients, misreading measurements, and accidentally creating entirely new dishes through our mistakes.</p>
+            <div class="meta-commentary">
+              <h4>Meta Commentary</h4>
+              <p>"The beauty of this format is that every cooking disaster becomes a 'happy accident' and every substitution becomes 'creative cooking.'"</p>
+            </div>
+            <div class="episode-meta">
+              <span>38 min</span>
+              <a href="#" class="listen-btn">Listen Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="episode-card">
+          <div class="episode-header">
+            <div class="episode-number">Episode 003</div>
+            <h3 class="episode-title">"Mindful Moments"</h3>
+            <p class="episode-subtitle">A meditation podcast that can't stay focused</p>
+          </div>
+          <div class="episode-content">
+            <p class="episode-description">We attempt to create a peaceful meditation podcast while constantly getting distracted by outside noises, forgetting our breathing exercises, and accidentally starting conversations mid-meditation.</p>
+            <div class="meta-commentary">
+              <h4>Meta Commentary</h4>
+              <p>"The irony of a meditation podcast that can't maintain focus is too perfect. We're basically creating ASMR for people who can't sit still."</p>
+            </div>
+            <div class="episode-meta">
+              <span>52 min</span>
+              <a href="#" class="listen-btn">Listen Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="episode-card">
+          <div class="episode-header">
+            <div class="episode-number">Episode 004</div>
+            <h3 class="episode-title">"Conspiracy Corner"</h3>
+            <p class="episode-subtitle">A conspiracy theory podcast that debunks itself</p>
+          </div>
+          <div class="episode-content">
+            <p class="episode-description">We create a conspiracy theory podcast that starts with wild theories but accidentally proves them wrong through our own research and logical thinking.</p>
+            <div class="meta-commentary">
+              <h4>Meta Commentary</h4>
+              <p>"The best part is when we realize our conspiracy theory makes no sense and have to pivot to a completely different theory mid-episode."</p>
+            </div>
+            <div class="episode-meta">
+              <span>41 min</span>
+              <a href="#" class="listen-btn">Listen Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="episode-card">
+          <div class="episode-header">
+            <div class="episode-number">Episode 005</div>
+            <h3 class="episode-title">"Tech Talk Tuesday"</h3>
+            <p class="episode-subtitle">A tech podcast hosted by people who don't understand technology</p>
+          </div>
+          <div class="episode-content">
+            <p class="episode-description">We attempt to discuss the latest tech trends while constantly mispronouncing company names, misunderstanding basic concepts, and accidentally inventing new technologies through our confusion.</p>
+            <div class="meta-commentary">
+              <h4>Meta Commentary</h4>
+              <p>"There's something beautiful about confidently explaining technology you don't understand. We're basically creating a parody of every tech podcast ever."</p>
+            </div>
+            <div class="episode-meta">
+              <span>47 min</span>
+              <a href="#" class="listen-btn">Listen Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="episode-card">
+          <div class="episode-header">
+            <div class="episode-number">Episode 006</div>
+            <h3 class="episode-title">"Fitness Fails"</h3>
+            <p class="episode-subtitle">A fitness podcast by people who hate working out</p>
+          </div>
+          <div class="episode-content">
+            <p class="episode-description">We try to create motivational fitness content while constantly making excuses, finding reasons to skip workouts, and accidentally inventing new forms of 'exercise' that involve minimal movement.</p>
+            <div class="meta-commentary">
+              <h4>Meta Commentary</h4>
+              <p>"The challenge is maintaining enthusiasm for fitness while being completely honest about how much we'd rather be eating pizza and watching TV."</p>
+            </div>
+            <div class="episode-meta">
+              <span>39 min</span>
+              <a href="#" class="listen-btn">Listen Now</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="categories">
+      <h2 class="section-title">Podcast Categories We've Explored</h2>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon">🕵️</div>
+          <h3 class="category-title">True Crime</h3>
+          <p class="category-desc">Fictional mysteries with real podcast tropes</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">👨‍🍳</div>
+          <h3 class="category-title">Cooking Shows</h3>
+          <p class="category-desc">Culinary disasters turned into content</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">🧘</div>
+          <h3 class="category-title">Wellness</h3>
+          <p class="category-desc">Meditation and mindfulness gone wrong</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">🔍</div>
+          <h3 class="category-title">Conspiracy Theories</h3>
+          <p class="category-desc">Theories that debunk themselves</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">💻</div>
+          <h3 class="category-title">Tech Talk</h3>
+          <p class="category-desc">Technology explained by the confused</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">💪</div>
+          <h3 class="category-title">Fitness</h3>
+          <p class="category-desc">Workout motivation for the unmotivated</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h3>Get New Podcast Ideas First!</h3>
+      <p>Subscribe to be notified when we release new episodes and get behind-the-scenes insights into our creative process. Plus, suggest your own podcast ideas! 🎙️</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email for podcast ideas" required>
+        <button type="submit" class="btn btn-primary">Subscribe for Ideas</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 Idea for a Podcast. Making meta-commentary on podcasting culture, one episode at a time.</p>
+        <p>🎙️ Every episode is both a podcast AND a commentary on podcasting 🎙️</p>
+        <div class="social-links">
+          <a href="#" class="social-link">📱</a>
+          <a href="#" class="social-link">🐦</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">🎧</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </body>
 </html> 
